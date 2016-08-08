@@ -23,7 +23,7 @@ module Pacto
           return unless Pacto.generating?
           logger.debug("Generating Contract for #{pacto_request}, #{pacto_response}")
           begin
-            contract_file = load_contract_file(pacto_request + pacto_response.status)
+            contract_file = load_contract_file(pacto_request, pacto_response.status)
 
             unless File.exist? contract_file
               uri = URI(pacto_request.uri)
@@ -60,12 +60,12 @@ module Pacto
 
         private
 
-        def load_contract_file(pacto_request)
+        def load_contract_file(pacto_request, dib=nil)
           hint = Pacto::Generator.hint_for(pacto_request)
           if hint.nil?
             uri = URI(pacto_request.uri)
             path = uri.path
-            basename = File.basename(path, '.json') + '.json'
+            basename = File.basename(path, '.json') + dib + '.json'
             File.join(Pacto.configuration.contracts_path, uri.host, File.dirname(path), basename)
           else
             File.expand_path(hint.target_file, Pacto.configuration.contracts_path)
