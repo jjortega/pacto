@@ -23,7 +23,7 @@ module Pacto
           return unless Pacto.generating?
           logger.debug("Generating Contract for #{pacto_request}, #{pacto_response}")
           begin
-            contract_file = load_contract_file(pacto_request)
+            contract_file = load_contract_file(pacto_request + pacto_response.status)
 
             unless File.exist? contract_file
               uri = URI(pacto_request.uri)
