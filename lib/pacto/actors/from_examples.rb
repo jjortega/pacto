@@ -34,6 +34,7 @@ module Pacto
           data = contract.request.to_hash
           request_values.merge! example_uri_values(contract)
           data['uri'] = contract.request.uri(request_values)
+          data['headers'] = example.request.headers
           data['body'] = example.request.body
           data['method'] = contract.request.http_method
           Pacto::PactoRequest.new(data)
