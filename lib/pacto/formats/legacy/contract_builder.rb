@@ -32,7 +32,7 @@ module Pacto
 
         def infer_name
           if @data[:examples].empty?
-            @data[:name] = @data[:request][:path] if @data[:request]
+            @data[:name] = @data[:request][:path] + "_" + @data[:response][:status] if @data[:request]
             return self
           end
 

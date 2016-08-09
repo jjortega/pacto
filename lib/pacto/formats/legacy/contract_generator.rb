@@ -65,7 +65,7 @@ module Pacto
           if hint.nil?
             uri = URI(pacto_request.uri)
             path = uri.path
-            basename = File.basename(path, '.json') + dib.to_s + '.json'
+            basename = File.basename(path, '.json') + "_" + dib.to_s + '.json'
             File.join(Pacto.configuration.contracts_path, uri.host, File.dirname(path), basename)
           else
             File.expand_path(hint.target_file, Pacto.configuration.contracts_path)
