@@ -48,7 +48,7 @@ module Pacto
         def save(source, request, response)
           @contract_builder.source = source
           # TODO: Get rid of the generate_contract call, just use add_example/infer_all
-          byebug
+          response.body.force_enconding("utf-8")
           @contract_builder.add_example('default', request, response).generate_contract(request, response) # .infer_all
           @contract_builder.without_examples if Pacto.configuration.generator_options[:no_examples]
           contract = @contract_builder.build_hash
