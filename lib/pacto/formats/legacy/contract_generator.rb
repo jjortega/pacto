@@ -51,6 +51,7 @@ module Pacto
           @contract_builder.add_example('default', request, response).generate_contract(request, response) # .infer_all
           @contract_builder.without_examples if Pacto.configuration.generator_options[:no_examples]
           contract = @contract_builder.build_hash
+          byebug
           pretty_contract = MultiJson.encode(contract, pretty: true)
           # This is because of a discrepency w/ jruby vs MRI pretty json
           pretty_contract.gsub!(/^$\n/, '')
