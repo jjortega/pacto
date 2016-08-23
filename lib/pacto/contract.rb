@@ -35,8 +35,8 @@ module Pacto
       adapter.stub_request!(self)
     end
 
-    def simulate_request(data = {})
-      pacto_request, pacto_response = execute(data)
+    def simulate_request
+      pacto_request, pacto_response = execute
       validate_response pacto_request, pacto_response
     end
 
