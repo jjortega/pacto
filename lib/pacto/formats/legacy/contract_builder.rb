@@ -3,6 +3,7 @@ module Pacto
   module Formats
     module Legacy
       class ContractBuilder < Hashie::Dash # rubocop:disable Metrics/ClassLength
+        include Logger
         extend Forwardable
         attr_accessor :source
 
@@ -66,7 +67,9 @@ module Pacto
         end
 
         def generate_request(request, response)
+          logger.debug("Request: " + request)
           hint = hint_for(request)
+          logger.debug("hint: " + hint)
           request = clean(
                             headers: @filters.filter_request_headers(request, response),
                             http_method: request.method,
