@@ -26,9 +26,7 @@ module Pacto
       end
 
       def hint_for(pacto_request)
-        logger.debug("Pacto Request: " + pacto_request.params + " - - " + pacto_request.path)
         configuration.hints.find { |hint| hint.matches? pacto_request }
-        logger.debug("Pacto Request: " + configuration.hints)
       end
     end
 
