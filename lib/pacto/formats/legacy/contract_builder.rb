@@ -100,7 +100,6 @@ module Pacto
         protected
 
         def example_and_hint
-          byebug
           example = @data[:examples].values.first
           example_request = PactoRequest.new example[:request]
           [example, Pacto::Generator.hint_for(example_request)]
