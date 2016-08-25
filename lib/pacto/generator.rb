@@ -6,7 +6,6 @@ module Pacto
   module Generator
 
     class << self
-      include Logger
       # Factory method to return the active contract generator implementation
       def contract_generator
         Pacto::Formats::Legacy::ContractGenerator.new
