@@ -9,6 +9,7 @@ module Pacto
 
       def process(request, response)
         contracts = Pacto.contracts_for request
+        byebug
         Pacto.configuration.hook.process contracts, request, response
 
         changed
