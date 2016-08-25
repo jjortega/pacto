@@ -40,6 +40,7 @@ module Pacto
   end
   module Stubs
     class WebMockAdapter
+      include Logger
       include Resettable
 
       def initialize(middleware)
@@ -79,6 +80,7 @@ module Pacto
       def process_hooks(webmock_request_signature, webmock_response)
         pacto_request = Pacto::Adapters::WebMock::PactoRequest.new webmock_request_signature
         pacto_response = Pacto::Adapters::WebMock::PactoResponse.new webmock_response
+        logger.debug(pacto_request.to_s)
         @middleware.process pacto_request, pacto_response
       end
 
